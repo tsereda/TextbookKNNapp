@@ -154,3 +154,11 @@ def init_routes(api, ns_node, get_db_session):
                     } for record in result
                 ]
             return {"relevant_pages": pages}, 200
+        
+    @ns_node.route('/clear_all_nodes')
+    class ClearAllNodes(Resource):
+        def post(self):
+            """Clear all nodes and relationships from the database"""
+            with get_db_session() as session:
+                session.run("MATCH (n) DETACH DELETE n")
+            return {"message": "All nodes and relationships have been cleared"}, 200

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Graph Visualization</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        #mynetwork {
+            width: 100%;
+            height: 600px;
+            border: 1px solid lightgray;
+        }
+    </style>
+</head>
+<body>
+    <div id="mynetwork"></div>
+    <script type="text/javascript">
+        fetch('/node/get_knowledge_graph')
+            .then(response => response.json())
+            .then(graphData => {
+                const nodes = new vis.DataSet();
+                const edges = new vis.DataSet();
+
+                graphData.graph.forEach(item => {
+                    nodes.add({id: item.node.name, label: item.node.name});
+                    item.connections.forEach(conn => {
+                        edges.add({from: item.node.name, to: conn.target.name, label: conn.type});
+                    });
+                });
+
+                const container = document.getElementById('mynetwork');
+                const visData = {
+                    nodes: nodes,
+                    edges: edges
+                };
+                const options = {};
+                new vis.Network(container, visData, options);
+            });
+    </script>
+</body>
+</html>

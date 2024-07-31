@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_restx import Api
 from dotenv import load_dotenv
 from neo4j import GraphDatabase
@@ -14,7 +14,7 @@ api = Api(app, version='1.0', title='Knowledge Graph API',
 
 # Neo4j connection details
 uri = os.getenv("NEO4J_URI")
-user = os.getenv("NEO4J_USERNAME")  # Changed from NEO4J_USER to NEO4J_USERNAME
+user = os.getenv("NEO4J_USERNAME")
 password = os.getenv("NEO4J_PASSWORD")
 
 # Create a Neo4j driver instance
@@ -51,6 +51,11 @@ upload_folder = pdf.init_routes(api, ns_pdf, get_db_session)
 
 # Configure upload folder
 app.config['UPLOAD_FOLDER'] = upload_folder
+
+# Add route for vis.js visualization
+@app.route('/visualize')
+def visualize():
+    return render_template('vis_template.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
