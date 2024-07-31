@@ -1,0 +1,24 @@
+textbookkn/
+├── backend/
+│   ├── app/
+│   │   ├── __init__.py
+│   │   ├── main.py
+│   │   ├── models.py
+│   │   ├── schemas.py
+│   │   ├── database.py
+│   │   └── pdf_processor.py
+│   ├── requirements.txt
+│   └── Dockerfile
+├── frontend/
+│   ├── src/
+│   │   ├── App.svelte
+│   │   ├── components/
+│   │   │   ├── PDFViewer.svelte
+│   │   │   └── KnowledgeGraph.svelte
+│   │   └── main.js
+│   ├── public/
+│   │   └── index.html
+│   ├── package.json
+│   └── Dockerfile
+├── docker-compose.yml
+└── README.md
