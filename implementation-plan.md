@@ -2,15 +2,15 @@
 
 ## 1. Set up the development environment
 - [x] Install Python (if not already installed)
-- [ ] Install Neo4j
-- [ ] Install Vue.js and Vue CLI
-- [ ] Set up a virtual environment for Python
-- [ ] Install required Python packages:
+- [x] Install Neo4j
+- [x] Install Vue.js and Vue CLI
+- [x] Set up a virtual environment for Python
+- [x] Install required Python packages:
   - Flask
   - neo4j-driver
   - PyPDF2 (or a similar PDF processing library)
   - numpy (for vector operations)
-- [ ] Install required Node.js packages for Vue.js:
+- [x] Install required Node.js packages for Vue.js:
   - axios (for API calls)
   - cytoscape (for graph visualization)
 
